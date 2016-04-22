@@ -5,14 +5,14 @@
             console.log('not ready yet');
             return;
         }
-        
+
         var options = [];
         var originalOptions = component.get("v.options");
         var currentValue = component.get("v.currentValue");
-        
+
         var counter=0;
         var foundCurrent = false;
-        
+
         for (var key in originalOptions) { //(value, label)
             if (originalOptions.hasOwnProperty(key)){
             	var option = {
@@ -31,11 +31,15 @@
                     option.ariaSelected = true;
                     option.tabIndex = 0;
                     foundCurrent = true;
+										//Throwing an event to inform listening components of teh current status
+                    var appEvent = $A.get("e.c:APstatusChange");
+										appEvent.setParams({ "status" : option.label });
+										appEvent.fire();
                 }
-                    
+
                 options.push(option);
                 counter = counter + 1;
-            }             
+            }
 		}
         console.log(options);
         component.set("v.pathObjects", options);

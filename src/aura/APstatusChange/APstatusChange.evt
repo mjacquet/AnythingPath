@@ -1,0 +1,3 @@
+<aura:event type="APPLICATION" description="Status change or init: this is the current status throwed by anything path">
+    <aura:attribute name="status" type="String"/>
+</aura:event>
